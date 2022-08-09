@@ -5,6 +5,7 @@ import org.hibernate.dialect.function.SQLFunctionTemplate;
 import org.hibernate.dialect.function.StandardSQLFunction;
 import org.hibernate.dialect.function.VarArgsSQLFunction;
 import org.hibernate.type.StringType;
+import org.springframework.context.annotation.Bean;
 
 import java.sql.Types;
 

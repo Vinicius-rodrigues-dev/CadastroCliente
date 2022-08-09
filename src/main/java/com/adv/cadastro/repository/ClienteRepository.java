@@ -1,6 +1,6 @@
 package com.adv.cadastro.repository;
 
-import entity.ClienteEntity;
+import com.adv.cadastro.entity.ClienteEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
