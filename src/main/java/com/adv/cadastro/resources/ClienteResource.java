@@ -1,17 +1,16 @@
 package com.adv.cadastro.resources;
 
 import com.adv.cadastro.entity.ClienteEntity;
-import com.adv.cadastro.model.Cliente;
 import com.adv.cadastro.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/cliente")
+@RequestMapping("/api/cliente")
 public class ClienteResource {
     
     @Autowired
@@ -19,14 +18,19 @@ public class ClienteResource {
 
     @PostMapping("/cadastrar")
     public ResponseEntity<String> cadastrar(@RequestBody ClienteEntity cliente){
-        clienteService.cadastrar(cliente);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Usuario cadastrado com sucesso");
+            String clienteEntity = clienteService.cadastrar(cliente);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Usuario cadastrado com sucesso ID" + clienteEntity);
     }
 
     @GetMapping("/listar")
-    public ResponseEntity<Object> listarTodos() {
+    public ResponseEntity<Optional<Iterable<ClienteEntity>>> ResponseEntitylistarTodos() {
         return ResponseEntity.status(HttpStatus.OK).body(clienteService.listarTodos());
     }
 
+    @GetMapping("/{id}")
+    @ResponseBody
+    ResponseEntity getCliente(@PathVariable Optional<Long> id) {
+            return ResponseEntity.status(HttpStatus.OK).body(clienteService.findCliente(id));
+        }
+    }
 
-}

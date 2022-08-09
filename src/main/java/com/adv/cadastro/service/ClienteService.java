@@ -1,16 +1,17 @@
 package com.adv.cadastro.service;
 
 import com.adv.cadastro.entity.ClienteEntity;
-import com.adv.cadastro.model.Cliente;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Optional;
 
 @Service
 public interface ClienteService {
 
-    void cadastrar(ClienteEntity cliente);
+    String cadastrar(ClienteEntity cliente);
 
-    List<ClienteEntity> listarTodos();
+    Optional<Iterable<ClienteEntity>> listarTodos();
+
+    Optional<ClienteEntity> findCliente(Optional id);
 
 }
